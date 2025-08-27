@@ -1,0 +1,37 @@
+{...}: {
+  imports = [
+    ./pkgs/bluetooth.nix
+    ./pkgs/cloud.nix
+    ./pkgs/code.nix
+    ./pkgs/container.nix
+    ./pkgs/dns.nix
+    ./pkgs/exploits.nix
+    ./pkgs/forensics.nix
+    ./pkgs/fuzzers.nix
+    ./pkgs/generic.nix
+    ./pkgs/hardware.nix
+    ./pkgs/host.nix
+    ./pkgs/information-gathering.nix
+    ./pkgs/kubernetes.nix
+    ./pkgs/ldap.nix
+    ./pkgs/load-testing.nix
+    ./pkgs/malware.nix
+    ./pkgs/misc.nix
+    ./pkgs/mobile.nix
+    ./pkgs/network.nix
+    ./pkgs/packet-generators.nix
+    ./pkgs/password.nix
+    ./pkgs/port-scanners.nix
+    ./pkgs/proxies.nix
+    ./pkgs/services.nix
+    ./pkgs/smartcards.nix
+    ./pkgs/terminals.nix
+    ./pkgs/tls.nix
+    ./pkgs/traffic.nix
+    ./pkgs/tunneling.nix
+    ./pkgs/voip.nix
+    ./pkgs/web.nix
+    ./pkgs/windows.nix
+    ./pkgs/wireless.nix
+  ];
+}
