@@ -37,6 +37,9 @@
     ./pkgs/web.nix
     ./pkgs/windows.nix
     ./pkgs/wireless.nix
+    ./modules/starship.nix
+    ./modules/nushell.nix
+    ./modules/carapace.nix
   ];
 
   boot.isContainer = true;
