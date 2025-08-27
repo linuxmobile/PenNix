@@ -1,8 +1,5 @@
 # Microsoft infrastructure and Windows-related tools, incl. SMB
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     adidnsdump
     adreaper

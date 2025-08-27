@@ -1,8 +1,5 @@
 # Host security tools
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     checksec
     chkrootkit

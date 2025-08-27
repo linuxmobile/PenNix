@@ -1,8 +1,5 @@
 # VoIP/SIP tools
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     sipp
     sipsak

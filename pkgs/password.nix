@@ -1,8 +1,5 @@
 # Password and hashing tools
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     authoscope
     bruteforce-luks

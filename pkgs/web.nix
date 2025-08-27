@@ -1,8 +1,5 @@
 # Tools for working with web servers, web applications, APIs, etc.
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     # apachetomcatscanner
     albedo

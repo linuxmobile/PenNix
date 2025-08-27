@@ -1,8 +1,5 @@
 # Tools for testing various services (SSH, SNMP, etc.)
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     acltoolkit
     checkip
@@ -59,7 +56,7 @@
     # Supply chain
     chain-bench
     witness
-    
+
     # WebDAV
     davtest
   ];

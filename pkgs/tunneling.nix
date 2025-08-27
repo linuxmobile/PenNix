@@ -1,8 +1,5 @@
 # Tunneling tools
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     bore-cli
     corkscrew

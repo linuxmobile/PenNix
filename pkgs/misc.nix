@@ -1,8 +1,5 @@
 # Various tools
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     ares-rs
     badchars

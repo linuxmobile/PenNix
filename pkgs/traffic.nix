@@ -1,8 +1,5 @@
 # Tools to capture network traffic
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     above
     dhcpdump

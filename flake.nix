@@ -13,10 +13,9 @@
       import nixpkgs {
         inherit system;
         config = {
-           allowUnfree = true;
-           allowInsecurePredicate = p: true;
-           segger-jlink.acceptLicense = true;
-
+          allowUnfree = true;
+          allowInsecurePredicate = p: true;
+          segger-jlink.acceptLicense = true;
         };
       });
 
@@ -57,42 +56,47 @@
     ];
 
     # Helper to extract environment.systemPackages from each module
-    getPackageSets = pkgs: builtins.listToAttrs (map (
-      file: let name = builtins.baseNameOf (toString file);
-                name' = builtins.replaceStrings [".nix"] [""] name;
-                mod = import file { inherit pkgs; };
-                pkgsList = mod.environment.systemPackages or [];
-            in {
-              name = name';
-              value = pkgsList;
-            }
-    ) pkgsFiles);
-
+    getPackageSets = pkgs:
+      builtins.listToAttrs (map (
+          file: let
+            name = builtins.baseNameOf (toString file);
+            name' = builtins.replaceStrings [".nix"] [""] name;
+            mod = import file {inherit pkgs;};
+            pkgsList = mod.environment.systemPackages or [];
+          in {
+            name = name';
+            value = pkgsList;
+          }
+        )
+        pkgsFiles);
   in {
-    devShells = genSystems (system:
-      import ./shells {
-        pkgs = pkgs.${system};
-        packageSets = getPackageSets pkgs.${system};
-      }
+    devShells = genSystems (
+      system:
+        import ./shells {
+          pkgs = pkgs.${system};
+          packageSets = getPackageSets pkgs.${system};
+        }
     );
 
-    packages = genSystems (system:
-      let
+    packages = genSystems (
+      system: let
         sets = getPackageSets pkgs.${system};
         allPkgs = pkgs.${system}.lib.flatten (builtins.attrValues sets);
       in
         builtins.listToAttrs (map (pkg: {
-          name = pkg.pname or pkg.name or "unknown";
-          value = pkg;
-        }) allPkgs)
+            name = pkg.pname or pkg.name or "unknown";
+            value = pkg;
+          })
+          allPkgs)
     );
 
-    nixosConfigurations = genSystems (system:
-      nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {inherit inputs;};
-        modules = [./container-config.nix];
-      }
+    nixosConfigurations = genSystems (
+      system:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {inherit inputs;};
+          modules = [./container-config.nix];
+        }
     );
 
     container = ./container.nix;

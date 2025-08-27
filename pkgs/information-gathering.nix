@@ -1,8 +1,5 @@
 # Tools for informtion gathering
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     cloudbrute
     enumerepo

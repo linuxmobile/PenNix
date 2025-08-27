@@ -1,8 +1,5 @@
 # Tools to generate packets
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     boofuzz
     gping

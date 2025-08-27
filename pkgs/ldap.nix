@@ -1,8 +1,5 @@
 # LDAP/AD tools
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     adenum
     hekatomb

@@ -1,8 +1,5 @@
 # Fuzzing tools
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     aflplusplus
     feroxbuster

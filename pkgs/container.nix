@@ -1,8 +1,5 @@
 # Container analysing tools
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     cdk-go
     clair

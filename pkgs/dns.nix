@@ -1,8 +1,5 @@
 # Tools for DNS queries and enumeration
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     aiodnsbrute
     amass

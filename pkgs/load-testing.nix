@@ -1,8 +1,5 @@
 # Load testing tools
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     ali
     drill

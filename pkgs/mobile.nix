@@ -1,8 +1,5 @@
 # Tools for working with Android/iOS devices
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     abootimg
     androguard

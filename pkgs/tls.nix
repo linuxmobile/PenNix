@@ -1,8 +1,5 @@
 # SSL/TLS testing tools
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     cero
     gsan

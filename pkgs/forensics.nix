@@ -1,8 +1,5 @@
 # Forensic tools
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     afflib
     amoco
