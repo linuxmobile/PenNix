@@ -1,8 +1,5 @@
 # Tools to work with cloud environments
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     cloud-nuke
     cloudfox
@@ -14,8 +11,8 @@
     grimoire
     imdshift
     pacu
-    poutine
-    prowler
+    # poutine (isn't building)
+    # prowler ( isn't building )
     yatas
   ];
 }

@@ -1,11 +1,8 @@
 # Kubernetes infrastructure
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     cfripper
-    checkov
+    # checkov (isn't building)
     cirrusgo
     kdigger
     kube-hunter

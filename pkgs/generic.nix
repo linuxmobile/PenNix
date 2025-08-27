@@ -12,7 +12,7 @@
     girsh
     gtfocli
     httpie
-    hurl
+    # hurl (isn't building)
     inetutils
     inxi
     iproute2

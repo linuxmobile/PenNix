@@ -1,13 +1,10 @@
 # Code analysing tools, incl. search for secrets and alike in code
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     bomber-go
     cargo-audit
     credential-detector
-    deepsecrets
+    # deepsecrets
     detect-secrets
     freeze
     # garble
@@ -20,8 +17,8 @@
     legitify
     osv-detector
     packj
-    pip-audit
-    # python314Packages.safety (check later)
+    # pip-audit (don't build)
+    # python314Packages.safety (don't build)
     secretscanner
     skjold
     tell-me-your-secrets

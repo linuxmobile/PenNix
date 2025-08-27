@@ -1,8 +1,5 @@
 # Common network tools
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     arp-scan
     arp-scan-rs
@@ -33,7 +30,7 @@
     rustcat
     sshping
     sslh
-    tunnelgraf
+    # tunnelgraf (isn't building)
     wbox
     whois
     yersinia

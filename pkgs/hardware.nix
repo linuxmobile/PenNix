@@ -1,8 +1,5 @@
 # Tools and libraries to access hardware
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     cantoolz
     chipsec
@@ -16,11 +13,11 @@
     teensy-loader-cli
     termineter
     tytools
-    python314Packages.angr
+    # python314Packages.angr
     # python314Packages.angrop (check later)
     # python314Packages.can (check later)
     # python314Packages.pyi2cflash (check later)
-    python314Packages.pyspiflash
+    # python314Packages.pyspiflash
     # routersploit
   ];
 }

@@ -29,7 +29,7 @@
     nbtscanner
     offensive-azure
     pre2k
-    python314Packages.lsassy
+    # python314Packages.lsassy (don't build)
     # python314Packages.pypykatz (check later)
     rdwatool
     samba

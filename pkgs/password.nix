@@ -20,7 +20,7 @@
     ncrack
     nth
     phrasendrescher
-    # python314Packages.patator (check later)
+    # python314Packages.patator (don't build)
     thc-hydra
     truecrack
   ];

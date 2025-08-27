@@ -1,10 +1,7 @@
 # Port scanners
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    das
+    # das isn't building
     havn
     ipscan
     masscan

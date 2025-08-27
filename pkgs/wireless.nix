@@ -13,6 +13,6 @@
     reaverwps
     wavemon
     wifite2
-    zigpy-cli
+    # zigpy-cli (isn't building)
   ];
 }

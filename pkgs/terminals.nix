@@ -1,8 +1,5 @@
 # Terminal tools
-
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     cutecom
     minicom
