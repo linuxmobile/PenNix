@@ -90,14 +90,18 @@
           allPkgs)
     );
 
-    nixosConfigurations = genSystems (
-      system:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {inherit inputs;};
-          modules = [./container-config.nix];
-        }
-    );
+    nixosConfigurations = {
+      pennix = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [./container-config.nix];
+      };
+      container = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [./container-config.nix];
+      };
+    };
 
     container = ./container.nix;
   };

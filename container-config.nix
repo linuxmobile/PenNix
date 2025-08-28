@@ -38,15 +38,35 @@
     ./pkgs/windows.nix
     ./pkgs/wireless.nix
     ./modules/starship.nix
-    ./modules/nushell.nix
-    ./modules/carapace.nix
   ];
 
   boot.isContainer = true;
 
   environment = {
-    # shellInit = "export DISPLAY=${get-host-ip}:0"; # (check later)
+    shellInit = ''
+      # Ensure Home Manager profile is in PATH
+      export PATH="$HOME/.nix-profile/bin:$PATH"
+
+      # Fix ghostty TERM for compatibility
+      if [ "$TERM" = "xterm-ghostty" ]; then
+        export TERM="xterm-256color"
+      fi
+    '';
   };
+
+  environment.systemPackages = with pkgs; [
+    nushell
+    starship
+    carapace
+  ];
+
+  users.users.root.shell = pkgs.nushell;
+
+  environment.etc."root/.config/nushell/config.nu".text = ''
+    $env.STARSHIP_CONFIG = "/root/.config/starship.toml"
+    $env.STARSHIP_SHELL = "nu"
+    source /root/.local/share/nushell/vendor/autoload/starship.nu
+  '';
 
   networking = {
     nat = {
@@ -101,6 +121,16 @@
   };
 
   system.stateVersion = "24.05";
+
+  system.activationScripts.nushell-config = ''
+    /run/current-system/sw/bin/mkdir -p /root/.config/nushell
+    /run/current-system/sw/bin/cp -f /etc/root/.config/nushell/config.nu /root/.config/nushell/config.nu
+  '';
+
+  system.activationScripts.nushell-starship = ''
+    /run/current-system/sw/bin/mkdir -p /root/.local/share/nushell/vendor/autoload
+    /run/current-system/sw/bin/starship init nu | /run/current-system/sw/bin/tee /root/.local/share/nushell/vendor/autoload/starship.nu > /dev/null
+  '';
 
   # users
   users.users.pennix = {
