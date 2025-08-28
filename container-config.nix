@@ -6,6 +6,8 @@
   get-host-ip = "$(ip route | grep default | cut -d' ' -f3)";
 in {
   imports = [
+    ./modules/nushell.nix
+    ./modules/starship.nix
     ./pkgs/bluetooth.nix
     ./pkgs/cloud.nix
     ./pkgs/code.nix
