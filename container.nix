@@ -1,5 +1,5 @@
 args: {
-  containers.rednix = {
+  containers.pennix = {
     privateNetwork = true;
     hostAddress = "192.168.100.2";
     localAddress = "192.168.100.11";

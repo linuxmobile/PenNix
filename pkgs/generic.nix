@@ -19,7 +19,7 @@
     iw
     lynx
     macchanger
-    nano
+    helix
     parted
     pwgen
     ronin
@@ -27,6 +27,17 @@
     utillinux
     wget
     xh
+    iputils # ping, traceroute, arping, etc.
+    procps # ps, top, free, etc.
+    htop
+    lsof
+    strace
+    which
+    file
+    less
+    findutils
+    net-tools # ifconfig, netstat, route, etc.
+    dnsutils # dig, nslookup
 
     # Monitoring
     btop
@@ -58,7 +69,6 @@
     netmask
 
     # Terminal multiplexer
-    tmux
     zellij
 
     # Archive tools
