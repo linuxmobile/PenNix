@@ -18,6 +18,9 @@
 
   system.activationScripts.nushellConfig = ''
     mkdir -p /root/.config/nushell
+    mkdir -p /root/.cache/carapace
+    mkdir -p /root/.cache/starship
+    mkdir -p /root/.cache/zoxide
 
     cat > /root/.config/nushell/env.nu << 'EOF'
     load-env {
@@ -155,6 +158,7 @@
     source ~/.cache/carapace/init.nu
     source ~/.cache/starship/init.nu
     source ~/.cache/zoxide/init.nu
+    source ~/.config/nushell/targets.nu
 
     alias "c" = clear
     alias "cat" = bat --number --color=always --paging=never --tabs=2 --wrap=never
@@ -166,14 +170,57 @@
     alias "tree" = eza --tree --icons --tree
     EOF
 
-    mkdir -p /root/.cache/carapace
-    mkdir -p /root/.cache/starship
-    mkdir -p /root/.cache/zoxide
+    cat > /root/.config/nushell/targets.nu << 'EOF'
+    def set-target-url [url: string] {
+      let target_file = ($nu.home-path | path join ".config/nushell/targets.json")
+      let dir = ($target_file | path parse | get parent)
+      if not ($dir | path exists) {
+        mkdir $dir
+      }
+      mut data = if ($target_file | path exists) {
+        try { open $target_file } catch { {target_url: "example.com", target_ip: "10.10.10.10"} }
+      } else {
+        {target_url: "example.com", target_ip: "10.10.10.10"}
+      }
+      $data.target_url = $url
+      $data | to json | save -f $target_file
+    }
+    def set-target-ip [ip: string] {
+      let target_file = ($nu.home-path | path join ".config/nushell/targets.json")
+      let dir = ($target_file | path parse | get parent)
+      if not ($dir | path exists) {
+        mkdir $dir
+      }
+      mut data = if ($target_file | path exists) {
+        try { open $target_file } catch { {target_url: "example.com", target_ip: "10.10.10.10"} }
+      } else {
+        {target_url: "example.com", target_ip: "10.10.10.10"}
+      }
+      $data.target_ip = $ip
+      $data | to json | save -f $target_file
+    }
+    def load-target [] {
+      let target_file = ($nu.home-path | path join ".config/nushell/targets.json")
+      if not ($target_file | path exists) {
+        {target_url: "example.com", target_ip: "10.10.10.10"} | to json | save -f $target_file
+      }
+    }
+    def get-url [] {
+      let target_file = ($nu.home-path | path join ".config/nushell/targets.json")
+      let data = try { open $target_file } catch { {target_url: "example.com", target_ip: "10.10.10.10"} }
+      $data.target_url
+    }
+    def get-ip [] {
+      let target_file = ($nu.home-path | path join ".config/nushell/targets.json")
+      let data = try { open $target_file } catch { {target_url: "example.com", target_ip: "10.10.10.10"} }
+      $data.target_ip
+    }
+
+    load-target
+    EOF
 
     ${pkgs.carapace}/bin/carapace _carapace nushell > /root/.cache/carapace/init.nu
-
     ${pkgs.starship}/bin/starship init nu > /root/.cache/starship/init.nu
-
     ${pkgs.zoxide}/bin/zoxide init nushell > /root/.cache/zoxide/init.nu
 
     chown -R root:root /root/.config /root/.cache
