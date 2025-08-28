@@ -1,0 +1,35 @@
+{pkgs}: {
+  bluetooth = import ./bluetooth.nix {inherit pkgs;};
+  cloud = import ./cloud.nix {inherit pkgs;};
+  code = import ./code.nix {inherit pkgs;};
+  container = import ./container.nix {inherit pkgs;};
+  dns = import ./dns.nix {inherit pkgs;};
+  exploits = import ./exploits.nix {inherit pkgs;};
+  forensics = import ./forensics.nix {inherit pkgs;};
+  fuzzers = import ./fuzzers.nix {inherit pkgs;};
+  generic = import ./generic.nix {inherit pkgs;};
+  hardware = import ./hardware.nix {inherit pkgs;};
+  host = import ./host.nix {inherit pkgs;};
+  information-gathering = import ./information-gathering.nix {inherit pkgs;};
+  kubernetes = import ./kubernetes.nix {inherit pkgs;};
+  ldap = import ./ldap.nix {inherit pkgs;};
+  load-testing = import ./load-testing.nix {inherit pkgs;};
+  malware = import ./malware.nix {inherit pkgs;};
+  misc = import ./misc.nix {inherit pkgs;};
+  mobile = import ./mobile.nix {inherit pkgs;};
+  network = import ./network.nix {inherit pkgs;};
+  packet-generators = import ./packet-generators.nix {inherit pkgs;};
+  password = import ./password.nix {inherit pkgs;};
+  port-scanners = import ./port-scanners.nix {inherit pkgs;};
+  proxies = import ./proxies.nix {inherit pkgs;};
+  services = import ./services.nix {inherit pkgs;};
+  smartcards = import ./smartcards.nix {inherit pkgs;};
+  terminals = import ./terminals.nix {inherit pkgs;};
+  tls = import ./tls.nix {inherit pkgs;};
+  traffic = import ./traffic.nix {inherit pkgs;};
+  tunneling = import ./tunneling.nix {inherit pkgs;};
+  voip = import ./voip.nix {inherit pkgs;};
+  web = import ./web.nix {inherit pkgs;};
+  windows = import ./windows.nix {inherit pkgs;};
+  wireless = import ./wireless.nix {inherit pkgs;};
+}

@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: let
+{lib, ...}: let
   get-host-ip = "$(ip route | grep default | cut -d' ' -f3)";
 in {
   imports = [
@@ -83,7 +79,7 @@ in {
 
   nixpkgs.config = {
     allowUnfree = true;
-    allowInsecurePredicate = p: true;
+    allowInsecurePredicate = true;
     segger-jlink.acceptLicense = true;
   };
 
