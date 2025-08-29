@@ -2,6 +2,14 @@
 
 **Pennix** is a next-generation, reproducible, and modular pentesting container built on [NixOS](https://nixos.org/). Inspired by [RedNix](https://github.com/redcode-labs/RedNix) and [nix-security-box](https://github.com/fabaff/nix-security-box), Pennix brings you a curated arsenal of security tools—ready to deploy, hack, and analyze in a snap.
 
+|                                                                         |
+| ----------------------------------------------------------------------- |
+| <img src="assets/screenshot-1.png" alt="Principal image" width="100%"/> |
+
+|                                                      |                                                      |
+| ---------------------------------------------------- | ---------------------------------------------------- |
+| <img src="assets/screenshot-2.png" alt="2nd image"/> | <img src="assets/screenshot-3.png" alt="3rd image"/> |
+
 ---
 
 ## 🚩 Why NixOS for Pentesting?
