@@ -29,7 +29,7 @@ If you want the most up-to-date, flexible, and reproducible pentesting environme
 ### 1. Clone the repo
 
 ```sh
-git clone https://github.com/yourusername/pennix.git
+git clone https://github.com/linuxmobile/pennix.git
 cd pennix
 ```
 
@@ -65,7 +65,7 @@ sudo nixos-container root-login pennix
 ip addr
 
 # Pick addresses not in use, e.g.:
-+sudo nixos-container create --flake .#pennix pennix --local-address 192.168.100.42 --host-address 192.168.100.2
+sudo nixos-container create --flake .#pennix pennix --local-address 192.168.100.42 --host-address 192.168.100.2
 ```
 
 **After creation, to see the container's IP:**
