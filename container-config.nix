@@ -52,6 +52,7 @@ in {
         export TERM="xterm-256color"
       fi
     '';
+    etc.hosts.enable = false;
   };
 
   networking = {
@@ -59,14 +60,13 @@ in {
     nat = {
       enable = true;
       internalInterfaces = ["ve-pennix"];
-      externalInterface = "eth0";
+      externalInterface = "wlp2s0";
+      enableIPv6 = true;
     };
     useDHCP = false;
     hostName = "PenNix";
     firewall = {
-      enable = true;
-      allowPing = true;
-      allowedTCPPorts = [];
+      enable = false;
     };
   };
 

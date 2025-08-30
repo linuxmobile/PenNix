@@ -111,9 +111,49 @@ Add Pennix as an input to your system flake, then in your `configuration.nix`:
 ## 🛡️ Networking & Isolation
 
 - By default, Pennix uses a private virtual Ethernet network (`192.168.100.0/24`).
-- NAT is pre-configured for outbound access.
+- NAT is required for outbound access. **If your host uses nftables (the default on modern NixOS), you must add a masquerade rule for your container subnet. See below for details.**
 - Port forwarding is set up for SSH (`host:2222 → container:22`) and HTTP (`host:8080 → container:80`).
 - You can customize addresses and ports in `container.nix`.
+
+---
+
+### ⚠️ Nftables NAT Setup Required
+
+If your host system uses **nftables** (the default on modern NixOS), you must add a NAT masquerade rule for your container subnet. The NixOS container NAT module only sets up iptables rules, which are ignored if nftables is active.
+
+Add this to your host's `/etc/nixos/configuration.nix`:
+
+```nix
+networking.nftables = {
+  enable = true;
+  tables = {
+    nat = {
+      family = "ip";
+      chains = {
+        POSTROUTING = {
+          type = "nat";
+          hook = "postrouting";
+          priority = 100;
+          rules = [
+            ''ip saddr 192.168.100.0/24 oifname "<your-external-interface>" masquerade''
+          ];
+        };
+      };
+    };
+  };
+};
+```
+
+- Replace `<your-external-interface>` with the name of your real network interface (e.g., `wlp2s0` for WiFi, `eth0` or `enpXsY` for Ethernet).
+  You can find this by running `ip addr` on your host and looking for the interface with your main IP address.
+- The subnet (`192.168.100.0/24`) should match the one you use for your container.
+
+After editing, run `sudo nixos-rebuild switch` on your host.
+
+---
+
+**Why is this needed?**
+NixOS containers set up NAT using iptables by default, but if your system uses nftables, you must add the rule yourself for outbound connectivity from the container.
 
 ---
 
@@ -123,6 +163,19 @@ Add Pennix as an input to your system flake, then in your `configuration.nix`:
 - **Nushell** as the default shell, with custom aliases, completions, and a beautiful Starship prompt.
 - **Home Manager**-style profile in PATH.
 - **Easy customization**: Just edit the Nix files in `pkgs/` or add your own modules.
+
+---
+
+### ℹ️ About `externalInterface` in container config
+
+The `externalInterface` option in your container's Nix config must match your host's real network interface.
+This is often **not** `eth0` on laptops or desktops. For example:
+
+- On WiFi, it's usually something like `wlp2s0`
+- On Ethernet, it might be `enp3s0`, `enp0s31f6`, etc.
+
+**Always check with `ip addr` on your host and set the correct interface name.**
+If you use the wrong interface, NAT will not work and your container will not have internet access.
 
 ---
 
