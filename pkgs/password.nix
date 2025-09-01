@@ -20,5 +20,7 @@
     # python314Packages.patator (don't build)
     thc-hydra
     truecrack
+    seclists
+    wordlists
   ];
 }

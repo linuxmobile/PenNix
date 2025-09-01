@@ -102,6 +102,8 @@ in {
       enable = true;
       settings.server = {};
     };
+
+    resolved.enable = true;
   };
 
   system.stateVersion = "24.05";
