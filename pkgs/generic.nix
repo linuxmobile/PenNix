@@ -48,6 +48,7 @@
     eternal-terminal
     mosh
     shellz
+    rlwrap
 
     # Common client for various protocols
     certinfo-go
@@ -76,5 +77,9 @@
     p7zip
     unrar
     unzip
+
+    python3
+    python313Packages.pip
+    git
   ];
 }

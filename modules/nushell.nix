@@ -34,8 +34,9 @@
       "PROMPT_INDICATOR_VI_NORMAL": "∙ "
       "SHELL": "${pkgs.nushell}/bin/nu"
       "VISUAL": "hx"
-      "SECLISTS_DIR": "${pkgs.seclists}"
-      "WORDLISTS_DIR": "${pkgs.wordlists}"
+      "TERM": "linux"
+      "SECLISTS_DIR": "${pkgs.seclists}/share/wordlists/seclists"
+      "WORDLISTS_DIR": "${pkgs.wordlists}/share/wordlists"
     }
 
     $env.config.color_config = {
